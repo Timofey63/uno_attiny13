@@ -1,14 +1,21 @@
 #include <Arduino.h>
 
-#define LED_PIN 1
-
 void setup() {
-  pinMode(LED_PIN, OUTPUT);
+  DDRB |= (1 << PB0) | (1 << PB1); // Пины на выход
 }
 
 void loop() {
-  digitalWrite(LED_PIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_PIN, LOW);
-  delay(1000);
+  // Синий (PB0)
+  for(char i=0; i<3; i++) {
+    PORTB |= (1 << PB0); delay(40);
+    PORTB &= ~(1 << PB0); delay(50);
+  }
+  delay(120);
+  
+  // Красный (PB1)
+  for(char i=0; i<3; i++) {
+    PORTB |= (1 << PB1); delay(40);
+    PORTB &= ~(1 << PB1); delay(50);
+  }
+  delay(120);
 }
